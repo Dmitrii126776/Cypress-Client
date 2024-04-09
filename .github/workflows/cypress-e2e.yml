@@ -1,12 +1,13 @@
 name: Cypress End-to-end tests
 on: push
+env:
+  URL_SERVER: ${{ secrets.URL_SERVER}}
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      # Install npm dependencies, cache them correctly
-      # and run all Cypress tests
       - name: Cypress run
         uses: cypress-io/github-action@v6
+
