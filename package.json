@@ -1,0 +1,26 @@
+{
+  "name": "cypress-client",
+  "version": "1.0.0",
+  "description": "Cypress Project",
+  "main": "index.js",
+  "scripts": {
+    "cypress:open": "npx cypress open",
+    "cypress:run:server": "npx cypress run --browser chrome --spec cypress/e2e/tests/server",
+    "cypress:run:client": "npx cypress run --browser chrome --spec cypress/e2e/tests/client",
+    "cypress:run:tests": "npx cypress run --browser chrome --spec cypress/e2e/tests",
+    "send-email": "node email.js",
+    "cypress-and-email": "npm run cypress:run:tests && npm run send-email"
+  },
+  "author": "Dmitrii Kuzhilin",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^13.7.1",
+    "cypress-mochawesome-reporter": "^3.8.2"
+  },
+  "dependencies": {
+    "cypress-plugin-api": "^2.11.1",
+    "dotenv": "^16.4.5",
+    "nodemailer": "^6.9.13",
+    "nodemailer-sendgrid-transport": "^0.2.0"
+  }
+}
