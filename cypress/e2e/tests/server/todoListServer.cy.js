@@ -2,7 +2,8 @@
 
 import {createTodayDate, getRandomNumberBetween} from "../../../helpers/utilities";
 
-const url = Cypress.env('urlServer');
+// const url = Cypress.env('urlServer');
+const url = 'https://server-mern-project.vercel.app';
 
 describe('Server TodoList Tests', () => {
     const newTask = "New Task # " + getRandomNumberBetween(10000, 99999);
