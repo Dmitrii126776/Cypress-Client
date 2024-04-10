@@ -2,8 +2,7 @@ import BasePage from "../base.page";
 import {getRandomNumberBetween} from "../../helpers/utilities";
 import {animalsBoard} from "../../helpers/selectors";
 
-// const url = Cypress.env('urlServer');
-const url = 'https://server-mern-project.vercel.app';
+const url = Cypress.env('urlServer');
 
 class AnimalsBoardClientPage extends BasePage {
     interceptGetAnimals() {

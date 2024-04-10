@@ -1,8 +1,7 @@
 /// <reference types="cypress" />
 import {getRandomNumberBetween} from "../../../helpers/utilities";
 
-// const url = Cypress.env('urlServer');
-const url = 'https://server-mern-project.vercel.app';
+const url = Cypress.env('urlServer');
 let animalId;
 let animalName;
 let animalType;
