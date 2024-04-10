@@ -11,5 +11,5 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
-          command: npx cypress run --spec cypress/e2e/tests/client
+          command: npx cypress run --spec cypress/e2e/tests
           browser: chrome
