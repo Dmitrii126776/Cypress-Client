@@ -2,6 +2,7 @@ name: Cypress End-to-end tests
 on: push
 env:
   URL_SERVER: ${{ secrets.URL_SERVER}}
+  USER_PASSWORD: ${{ secrets.USER_PASSWORD}}
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
