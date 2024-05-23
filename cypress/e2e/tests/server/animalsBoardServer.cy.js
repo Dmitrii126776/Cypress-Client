@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 import {getRandomNumberBetween} from "../../../helpers/utilities";
 
-const url = Cypress.env('urlServer');
+const url = Cypress.env('URL_SERVER');
 let animalId;
 let animalName;
 let animalType;
@@ -13,7 +13,7 @@ describe('Server Animals Board Tests', () => {
         //     .should('equal', 202)
         cy.api(`${url}/animals`)
             .then(response => {
-                expect(response.status).to.equal(202);
+                expect(response.status).to.equal(200);
                 expect(response).property('body');
                 const animalsList = response.body;
                 const index = getRandomNumberBetween(0, animalsList.length - 1)

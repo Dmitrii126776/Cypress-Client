@@ -1,5 +1,5 @@
-const {defineConfig} = require("cypress");
 require('dotenv').config();
+const {defineConfig} = require("cypress");
 
 module.exports = defineConfig({
     chromeWebSecurity: false,
@@ -26,13 +26,12 @@ module.exports = defineConfig({
     e2e: {
         baseUrl: 'https://client-mern-auth.netlify.app',
         env: {
+            ...process.env,
             requestMode: true,
-            urlServer: process.env.URL_SERVER,
         },
         setupNodeEvents(on, config) {
             // implement node event listeners here
-            // require('cypress-mochawesome-reporter/plugin')(on);
-
+            require('cypress-mochawesome-reporter/plugin')(on);
         },
     },
 });

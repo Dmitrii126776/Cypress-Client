@@ -2,7 +2,7 @@ import BasePage from "../base.page";
 import {getRandomNumberBetween} from "../../helpers/utilities";
 import {animalsBoard} from "../../helpers/selectors";
 
-const url = Cypress.env('urlServer');
+const url = Cypress.env('URL_SERVER');
 
 class AnimalsBoardClientPage extends BasePage {
     interceptGetAnimals() {

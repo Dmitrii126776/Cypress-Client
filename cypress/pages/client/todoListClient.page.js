@@ -2,7 +2,7 @@ import BasePage from "../base.page";
 import {todoList} from "../../helpers/selectors";
 import {createTodayDate, getRandomNumberBetween} from "../../helpers/utilities";
 
-const url = Cypress.env('urlServer');
+const url = Cypress.env('URL_SERVER');
 const newTask = "New Task # " + getRandomNumberBetween(10000, 99999);
 const updatedTask = "Updated " + newTask;
 const createDate = createTodayDate();

@@ -1,6 +1,6 @@
 import animalsBoardClientPage from "../../../pages/client/animalsBoardClient.page";
 
-describe('Animals Board Client Tests', () => {
+describe('Client Animals Board Tests', () => {
 
     beforeEach('Successfully loads to AnimalsBoard Page', () => {
         cy.visit('/')
@@ -14,6 +14,7 @@ describe('Animals Board Client Tests', () => {
         animalsBoardClientPage.randomSelectAnimal();
         animalsBoardClientPage.navigateToSelectedAnimalPage();
         animalsBoardClientPage.verifyAnimalPageData();
-        // cy.go('back')
+        cy.go('back')
+        animalsBoardClientPage.verifyAnimalsBoard();
     });
 })
