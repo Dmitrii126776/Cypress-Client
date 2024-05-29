@@ -4,6 +4,7 @@ import {createTodayDate, getRandomNumberBetween} from "../../helpers/utilities";
 
 const url = Cypress.env('URL_SERVER');
 const newTask = "New Task # " + getRandomNumberBetween(10000, 99999);
+// const newTask = "New Task # " + Cypress._.random(10000, 99999);
 const updatedTask = "Updated " + newTask;
 const createDate = createTodayDate();
 

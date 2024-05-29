@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 import {createTodayDate, getRandomNumberBetween} from "../../../helpers/utilities";
+import userEmail from "../../../fixtures/userEmail.json";
 
-// const url = Cypress.env('urlServer');
 const url = Cypress.env('URL_SERVER');
 
 describe('Server TodoList Tests', () => {
@@ -11,23 +11,21 @@ describe('Server TodoList Tests', () => {
     let taskId;
 
     before('Login function', () => {
-        cy.api('POST', `${url}/login`, {
-            email: 'cypress@mail.com',
-            password: Cypress.env('USER_PASSWORD')
-            // password: Cypress.env('userPassword')
-        }).then((response) => {
-            Cypress.env('ACCESS_TOKEN', response.body.accessToken)
-            expect(response).property('status').to.equal(200);
-            expect(response).property('statusText').to.equal("OK");
-        })
+        cy.apiLogin(userEmail.selenium, Cypress.env('USER_PASSWORD'));
+        // cy.api('POST', `${url}/login`, {
+        //     email: 'cypress@mail.com',
+        //     password: Cypress.env('USER_PASSWORD')
+        //     // password: Cypress.env('userPassword')
+        // }).then((response) => {
+        //     Cypress.env('ACCESS_TOKEN', response.body.accessToken)
+        //     expect(response).property('status').to.equal(200);
+        //     expect(response).property('statusText').to.equal("OK");
+        // })
     })
 
     after('Logout function', () => {
-        cy.api('POST', `${url}/logout`).then((response) => {
-            expect(response).property('status').to.equal(200);
-            expect(response).property('statusText').to.equal("OK");
-        })
-    })
+        cy.apiLogout();
+    });
 
     it('TC1 - Add a new task', () => {
         cy.api('POST', `${url}/tasks`, {
