@@ -31,6 +31,13 @@ Cypress.Commands.add('apiLogin', (email, password) => {
     })
 });
 
+Cypress.Commands.add('loginSession', (email, password) => {
+    cy.session(email, () => {
+            cy.apiLogin(email, password)
+        }, {cacheAcrossSpecs: true}
+    )
+})
+
 Cypress.Commands.add('logout', () => {
     cy.getElByTestIdAndClick("nav-user-name");
     cy.getElByTestIdAndClick("logout-link");

@@ -11,7 +11,10 @@ describe('Server TodoList Tests', () => {
     let taskId;
 
     before('Login function', () => {
-        cy.apiLogin(userEmail.selenium, Cypress.env('USER_PASSWORD'));
+        // cy.apiLogin(userEmail.selenium, Cypress.env('USER_PASSWORD'));
+        cy.session('performApiLogin', () => {
+            cy.apiLogin(userEmail.cypress, Cypress.env('USER_PASSWORD'));
+        });
         // cy.api('POST', `${url}/login`, {
         //     email: 'cypress@mail.com',
         //     password: Cypress.env('USER_PASSWORD')

@@ -1,12 +1,21 @@
 import kanbanBoardClientPage from "../../../pages/client/kanbanBoardClient.page";
-import {kanbanBoard} from "../../../helpers/selectors";
+import userEmail from "../../../fixtures/userEmail.json";
 
 describe('Client KanbanBoard Tests', () => {
     beforeEach('Successfully loads to KanbanBoard Page', () => {
+        // cy.session('performLogin', () => {
+        //     cy.login(userEmail.cypress, Cypress.env('USER_PASSWORD'));
+        // });
+        cy.loginSession(userEmail.cypress, Cypress.env('USER_PASSWORD'));
         cy.visit('/')
         kanbanBoardClientPage.interceptGetNumbers();
         kanbanBoardClientPage.navigateToKanbanBoard();
         kanbanBoardClientPage.verifyKanbanBoard();
+    });
+
+    after('Logout', () => {
+        cy.logout();
+        // cy.apiLogout();
     });
 
     it('TC-10 - Created new Card', () => {
@@ -22,36 +31,10 @@ describe('Client KanbanBoard Tests', () => {
         kanbanBoardClientPage.verifyKanbanBoard();
         kanbanBoardClientPage.verifyNewAssigneeStatusPriorityOnBoard();
     });
-});
 
-describe('Client KanbanBoard Moving card using drag and drop', () => {
-    beforeEach('Successfully loads to KanbanBoard Page', () => {
-        cy.visit('/')
-        kanbanBoardClientPage.interceptGetNumbers();
-        kanbanBoardClientPage.navigateToKanbanBoard();
-        kanbanBoardClientPage.verifyKanbanBoard();
-        cy.get(kanbanBoard.cardGroup).contains("Drag&Drop")
-            .parent().should("be.visible").then(item => {
-            cy.wrap(item).find(kanbanBoard.cardNumber).invoke("text").as("number")
-            cy.wrap(item).find(kanbanBoard.cardStatus).invoke("text").as("priority")
-        })
+    it('TC-12 - Moving card using drag and drop random', () => {
+        kanbanBoardClientPage.findDragAndDropCard();
+        kanbanBoardClientPage.moveCardToAnotherBoardRandom();
     });
 
-    it('TC-12 - Moving card using drag and drop forward', () => {
-
-        const dataTransfer = new DataTransfer();
-        cy.get('.item').contains("Drag&Drop").should("be.visible").trigger('dragstart', {dataTransfer})
-        cy.get('[data-testid="board-closed"]').trigger('drop', {dataTransfer, force: true})
-        cy.get('.item').contains("Drag&Drop").parent().should("be.visible")
-            .find('[data-testid="card-status"]').should("be.visible").and("contain.text", "closed")
-    })
-
-    it('TC-13 - Moving card using drag and drop back', () => {
-        const dataTransfer = new DataTransfer();
-        cy.get('.item').contains("Drag&Drop").should("be.visible").trigger('dragstart', {dataTransfer})
-        cy.get('[data-testid="board-new"]').trigger('drop', {dataTransfer, force: true})
-        cy.get('.item').contains("Drag&Drop").parent().should("be.visible")
-            .find('[data-testid="card-status"]').should("be.visible").and("contain.text", "new")
-
-    })
 });

@@ -7,6 +7,8 @@ declare global {
 
             apiLogin(email: string, password: string);
 
+            loginSession(email: string, password: string): Chainable<void>;
+
             logout(): Chainable<void>;
 
             apiLogout(): Chainable<void>;

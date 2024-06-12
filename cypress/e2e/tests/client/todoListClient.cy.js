@@ -4,7 +4,10 @@ import userEmail from "../../../fixtures/userEmail.json";
 describe('Client TodoList Tests', () => {
 
     beforeEach('Successfully loads to TodoList Page', () => {
-        cy.apiLogin(userEmail.cypress, Cypress.env('USER_PASSWORD'));
+        cy.session('performApiLogin', () => {
+            cy.apiLogin(userEmail.selenium, Cypress.env('USER_PASSWORD'));
+        });
+        // cy.loginSession(userEmail.selenium, Cypress.env('USER_PASSWORD'));
         cy.visit('/')
         todoListClientPage.interceptGetTasks();
         todoListClientPage.navigateTodoList();

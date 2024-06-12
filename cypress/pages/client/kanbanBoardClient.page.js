@@ -92,6 +92,29 @@ class KanbanBoardClientPage extends BasePage {
             });
         });
     }
+
+    findDragAndDropCard() {
+        cy.get(kanbanBoard.cardGroup).contains("Drag&Drop")
+            .parent().should("be.visible").then(item => {
+            cy.wrap(item).find(kanbanBoard.cardNumber).invoke("text").as("number")
+            // cy.wrap(item).find(kanbanBoard.cardStatus).invoke("text").as("priority")
+        });
+    }
+
+    moveCardToAnotherBoardRandom() {
+        const statuses = ["new", "active", "review", "closed"];
+        const status = statuses[Cypress._.random(0, statuses.length - 1)];
+        const dataTransfer = new DataTransfer();
+        cy.get('@number').then(number => {
+            cy.get('.item').contains("Drag&Drop").should("be.visible").trigger('dragstart', {dataTransfer})
+            cy.get(`[data-testid="board-${status}"]`).trigger('drop', {dataTransfer, force: true})
+            cy.wait(500);
+            cy.get('.item').contains("Drag&Drop").parent().should("be.visible").then(item => {
+                cy.wrap(item).find(kanbanBoard.cardStatus).should("be.visible").and("contain.text", `${status}`)
+                cy.wrap(item).find(kanbanBoard.cardNumber).should("be.visible").and("contain.text", number)
+            })
+        })
+    }
 }
 
 export default new KanbanBoardClientPage();
