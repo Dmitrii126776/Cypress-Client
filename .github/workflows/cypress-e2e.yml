@@ -12,10 +12,11 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
+          working-directory: ./
           command: npx cypress run --browser chrome --spec cypress/e2e/tests
-#      - name: Report
-#        uses: actions/upload-artifact@v4
-#        if: always()
-#        with:
-#          name: Report
-#          path: ./cypress/reports/html
+      - name: Report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: Report
+          path: ./cypress/reports/html
