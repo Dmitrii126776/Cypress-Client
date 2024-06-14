@@ -1,72 +1,19 @@
-#name: Cypress End-to-end tests
-#on: push
-#env:
-#  URL_SERVER: ${{ secrets.URL_SERVER}}
-#  USER_PASSWORD: ${{ secrets.USER_PASSWORD}}
-#jobs:
-#  cypress-run:
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: Checkout
-#        uses: actions/checkout@v4
-#      - name: Cypress run
-#        uses: cypress-io/github-action@v6
-#        with:
-#          working-directory: ./
-#          command: npx cypress run --browser chrome --spec cypress/e2e/tests
-#      - name: Upload Report
-#        uses: actions/upload-artifact@v4
-#        if: always()
-#        with:
-#          name: Report
-#          path: ./cypress/reports/html
-
 name: Cypress End-to-end tests
 on: push
 env:
-  URL_SERVER: ${{ secrets.URL_SERVER }}
-  USER_PASSWORD: ${{ secrets.USER_PASSWORD }}
+  URL_SERVER: ${{ secrets.URL_SERVER}}
+  USER_PASSWORD: ${{ secrets.USER_PASSWORD}}
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Install dependencies
-        run: npm install
-
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
           working-directory: ./
           command: npx cypress run --browser chrome --spec cypress/e2e/tests
-
-      - name: Check JSON report files
-        run: |
-          echo "Checking JSON report files..."
-          ls -l ./cypress/reports/html/
-
-      - name: Generate merged JSON report
-        run: |
-          echo "Merging JSON report files..."
-          npx mochawesome-merge ./cypress/reports/html/*.json > ./cypress/reports/html/report.json
-
-      - name: Check merged JSON report
-        run: |
-          echo "Checking merged JSON report..."
-          cat ./cypress/reports/html/report.json
-
-      - name: Generate HTML report
-        run: |
-          echo "Generating HTML report..."
-          npx mochawesome-report-generator ./cypress/reports/html/report.json --reportDir ./cypress/reports/html --reportTitle "Cypress Report"
-
-      - name: Check HTML report
-        run: |
-          echo "Checking HTML report..."
-          ls -l ./cypress/reports/html/
-
       - name: Upload Report
         uses: actions/upload-artifact@v4
         if: always()
