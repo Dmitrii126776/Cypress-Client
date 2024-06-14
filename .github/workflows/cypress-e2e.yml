@@ -15,7 +15,7 @@ jobs:
           npx cypress run --browser chrome --spec cypress/e2e/tests
           npx mochawesome-merge ./cypress/reports/html/*.json > ./cypress/reports/html/report.json
           npx mochawesome-report-generator ./cypress/reports/html/report.json --reportDir ./cypress/reports/html --reportTitle "Report" || exit 0
-          #        with:
+      #        with:
           #          working-directory: ./
           #          command: npx cypress run --browser chrome --spec cypress/e2e/tests --mochawesome-merge ./cypress/reports/html/*.json > ./cypress/reports/html/report.json --merge ./cypress/reports/html/report.json --reportDir ./cypress/reports/html --reportTitle "Report" || exit 0
           #          command: timeout 2m npx cypress run --browser chrome --spec cypress/e2e/tests || exit 0
