@@ -13,8 +13,8 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           working-directory: ./
-          command: timeout 2m npx cypress run --browser chrome --spec cypress/e2e/tests || exit 0
-#          command: npx cypress run --browser chrome --spec cypress/e2e/tests
+          command: npx cypress run --browser chrome --spec cypress/e2e/tests --merge ./cypress/reports/html/report.json --reportDir ./cypress/reports/html --reportTitle "Report"
+#          command: timeout 2m npx cypress run --browser chrome --spec cypress/e2e/tests || exit 0
           #          command: timeout 2m npx cypress run --browser chrome --spec cypress/e2e/tests
           #          command: npx cypress run --browser chrome --spec cypress/e2e/tests --reporter cypress-mochawesome-reporter --reporter-options charts=true,reportPageTitle=cypress-client,embeddedScreenshots=true,inlineAssets=true,saveAllAttempts=false,autoOpen=true
           run: |
