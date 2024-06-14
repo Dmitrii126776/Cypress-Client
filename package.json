@@ -7,7 +7,7 @@
     "cypress:open": "npx cypress open",
     "cypress:run:server": "npx cypress run --browser chrome --spec cypress/e2e/tests/server",
     "cypress:run:client": "npx cypress run --browser chrome --spec cypress/e2e/tests/client",
-    "cypress:run:tests": "npx cypress run --browser chrome --spec cypress/e2e/tests && npx mochawesome-merge ./cypress/reports/html/*.json > ./cypress/reports/html/report.json && npx mochawesome-report-generator ./cypress/reports/html/report.json --reportTitle 'Report'",
+    "cypress:run:tests": "npx cypress run --browser chrome --spec cypress/e2e/tests",
     "send-email": "node email.js",
     "cypress-and-email": "npm run cypress:run:tests && npm run send-email"
   },
