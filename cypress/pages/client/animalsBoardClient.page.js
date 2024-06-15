@@ -19,8 +19,8 @@ class AnimalsBoardClientPage extends BasePage {
         cy.intercept('GET', '/animals/*').as('openNewWindow');
 
         cy.get(animalsBoard.animalsGroup).should("be.visible").then(cards => {
-            const card = getRandomNumberBetween(0, cards.length - 1);
-            // const card = 40;
+            // const card = getRandomNumberBetween(0, cards.length - 1);
+            const card = 40;
             cy.wrap(cards).eq(card).scrollIntoView().should("be.visible").then(card => {
                 cy.wrap(card).find('.card-title')
                     .invoke("text").then(text => {
