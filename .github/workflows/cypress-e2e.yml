@@ -13,7 +13,7 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           working-directory: ./
-          command: npx cypress run --browser chrome --spec cypress/e2e/tests
+          command: npm-run-all clean:reports cypress:run:tests combine-reports generate-report
       - name: Upload Report
         uses: actions/upload-artifact@v4
         if: always()
