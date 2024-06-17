@@ -17,6 +17,13 @@
 import './commands';
 import 'cypress-plugin-api';
 import 'cypress-mochawesome-reporter/register';
+import addContext from "mochawesome/addContext";
 
-// Alternatively you can use CommonJS syntax:
-// require('./commands')
+Cypress.on("test:after:run", (test, runnable) => {
+    if (test.state === "failed") {
+        const screenshotClient = `client/${Cypress.spec.name}/${runnable.parent.title} -- ${test.title} (failed).png`;
+        addContext({test}, screenshotClient);
+        // const screenshotServer = `server/${Cypress.spec.name}/${runnable.parent.title} -- ${test.title} (failed).png`;
+        // addContext({test}, screenshotServer);
+    }
+});

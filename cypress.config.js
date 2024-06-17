@@ -16,6 +16,7 @@ module.exports = defineConfig({
     },
     reporter: 'cypress-mochawesome-reporter',
     reporterOptions: {
+        reportDir: 'cypress/reports/html',
         charts: true,
         reportPageTitle: 'cypress-client',
         embeddedScreenshots: true,
@@ -23,6 +24,7 @@ module.exports = defineConfig({
         saveAllAttempts: false,
         autoOpen: true,
     },
+    screenshotsFolder: 'cypress/reports/html/',
     e2e: {
         baseUrl: 'https://client-mern-auth.netlify.app',
         env: {
