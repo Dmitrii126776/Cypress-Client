@@ -13,7 +13,7 @@
     "combine-reports": "mochawesome-merge cypress/reports/html/.jsons/*.json > cypress/reports/html/report.json",
     "generate-report": "marge cypress/reports/html/report.json -f index -o cypress/reports/html",
     "inline-assets": "node inline-assets.js",
-    "clear-test-combine-generate": "npm-run-all clean:reports cypress:run:tests combine-reports generate-report inline-assets",
+    "clear-test-combine-generate": "npm-run-all clean:reports cypress:run:tests combine-reports generate-report",
     "send-email": "node email.js",
     "cypress-and-email": "npm run cypress:run:tests && npm run send-email"
   },
